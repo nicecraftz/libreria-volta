@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group = 'it.edu.iisvoltapescara'
@@ -10,8 +11,17 @@ repositories {
 }
 
 dependencies {
-
+    compileOnly("org.projectlombok:lombok:1.18.26")
+    annotationProcessor("org.projectlombok:lombok:1.18.26")
 }
 
-test {
+java {
+    java.toolchain.languageVersion.set(JavaLanguageVersion.of(17));
+}
+
+shadowJar {
+    archiveFileName.set('libreria.jar')
+    manifest {
+        attributes 'Main-Class': 'it.edu.iisvoltapescara.libreria.Main'
+    }
 }

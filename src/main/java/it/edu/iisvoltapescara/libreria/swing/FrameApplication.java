@@ -2,16 +2,20 @@ package it.edu.iisvoltapescara.libreria.swing;
 
 import it.edu.iisvoltapescara.libreria.book.Book;
 import it.edu.iisvoltapescara.libreria.book.BookManager;
-import it.edu.iisvoltapescara.libreria.file.ApplicationFileFilter;
+import it.edu.iisvoltapescara.libreria.file.PDFFileFilter;
 import it.edu.iisvoltapescara.libreria.swing.buttonlistener.*;
 import it.edu.iisvoltapescara.libreria.swing.components.RoundedButton;
 import it.edu.iisvoltapescara.libreria.swing.windowlistener.WindowManager;
+import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
+import java.util.Objects;
 
+@Getter
 public class FrameApplication extends JFrame {
+    @Getter
     private static FrameApplication instance;
 
     private final JTextField titleField, authorField, pageField, priceField;
@@ -19,7 +23,6 @@ public class FrameApplication extends JFrame {
     private final RoundedButton delete, register, chooseFile, searchButton, removeButton;
 
     private final JFileChooser fileChooser;
-
     private final JTextArea bookArea;
     private final JScrollPane scrollPane;
 
@@ -36,7 +39,8 @@ public class FrameApplication extends JFrame {
         JPanel p = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(new ImageIcon("resources/img.jpg").getImage(), 0, 0, getWidth(), getHeight(), null);
+                Image image = new ImageIcon(Objects.requireNonNull(getClass().getResource("/img.jpg"))).getImage();
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
             }
         };
 
@@ -69,7 +73,7 @@ public class FrameApplication extends JFrame {
         scrollPane.setBounds(750, 150, 200, 400);
 
         fileChooser = new JFileChooser(System.getProperty("user.dir"));
-        fileChooser.addChoosableFileFilter(new ApplicationFileFilter());
+        fileChooser.setFileFilter(new PDFFileFilter());
 
         titleLabel.setBounds(15, 10, 80, 30);
         titleField.setBounds(140, 10, 320, 30);
@@ -172,37 +176,5 @@ public class FrameApplication extends JFrame {
         for (JTextField jTextField : Arrays.asList(titleField, authorField, pageField, priceField)) {
             jTextField.setBackground(color);
         }
-    }
-
-    public BookManager getBookManager() {
-        return bookManager;
-    }
-
-    public JTextField getTitleField() {
-        return titleField;
-    }
-
-    public JTextField getAuthorField() {
-        return authorField;
-    }
-
-    public JTextField getPageField() {
-        return pageField;
-    }
-
-    public JTextField getPriceField() {
-        return priceField;
-    }
-
-    public JButton getChooseFile() {
-        return chooseFile;
-    }
-
-    public JFileChooser getFileChooser() {
-        return fileChooser;
-    }
-
-    public static FrameApplication getInstance() {
-        return instance;
     }
 }

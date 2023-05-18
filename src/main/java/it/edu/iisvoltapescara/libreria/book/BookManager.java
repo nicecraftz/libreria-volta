@@ -1,6 +1,7 @@
 package it.edu.iisvoltapescara.libreria.book;
 
 import it.edu.iisvoltapescara.libreria.file.ManagedFile;
+import lombok.Getter;
 
 import java.io.File;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import java.util.Vector;
 
 public class BookManager {
     private final ManagedFile managedFile = new ManagedFile(new File(System.getProperty("user.dir") + File.separator + "data", "books.txt"));
+    @Getter
     private final Vector<Book> books = new Vector<>();
 
     public int size() {
@@ -27,10 +29,6 @@ public class BookManager {
 
     public Optional<Book> get(String title) {
         return books.parallelStream().filter(book -> book.getTitle().equalsIgnoreCase(title)).findFirst();
-    }
-
-    public Vector<Book> getBooks() {
-        return books;
     }
 
     public void loadBooksFromSaveFile() {
