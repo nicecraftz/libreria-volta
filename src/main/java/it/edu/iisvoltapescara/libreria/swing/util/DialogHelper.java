@@ -4,6 +4,10 @@ import it.edu.iisvoltapescara.libreria.swing.FrameApplication;
 
 import javax.swing.*;
 
+/**
+ * Classe di utilità per la gestione dei dialoghi
+ * piu' pulita e semplice da usare
+ */
 public class DialogHelper {
     private static final FrameApplication FRAME_APPLICATION = FrameApplication.getInstance();
 

@@ -22,7 +22,6 @@ public class FrameApplication extends JFrame {
     private final JTextField priceField = new JTextField();
 
     private final RoundedButton chooseFile = new RoundedButton("Scegli File", Color.CYAN);
-    ;
     private final JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
 
     private final JTextArea bookArea = new JTextArea();
@@ -159,8 +158,9 @@ public class FrameApplication extends JFrame {
         authorField.setText("");
         pageField.setText("");
         priceField.setText("");
-        chooseFile.setText("Seleziona File");
+
         fileChooser.setSelectedFile(null);
+        chooseFile.setText("Seleziona File");
     }
 
     /**
@@ -182,7 +182,7 @@ public class FrameApplication extends JFrame {
      */
     public void changeFieldsColorIfEmpty(Color color) {
         for (JTextField jTextField : Arrays.asList(titleField, authorField, pageField, priceField)) {
-            if (jTextField.getText().isEmpty() || jTextField.getText().isBlank()) jTextField.setBackground(color);
+            if (jTextField.getText().isEmpty()) jTextField.setBackground(color);
         }
     }
 

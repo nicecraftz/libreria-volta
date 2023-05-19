@@ -68,7 +68,7 @@ public class BookManager {
         double price = Double.parseDouble(bookData[3]);
         File file = bookData[4].equalsIgnoreCase("null") ? null : new File(bookData[4]);
 
-        if (title.isBlank() || author.isBlank() || pages <= 0 || price < 0 || (file != null && !file.exists())) {
+        if (pages <= 0 || price < 0 || (file != null && !file.exists())) {
             return Optional.empty();
         }
 

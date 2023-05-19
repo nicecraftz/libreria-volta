@@ -14,6 +14,7 @@ public class WindowManager implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
+        // mostra un messaggio di conferma
         DialogHelper.showInfoDialog("Chiusura", "Chiusura in corso del programma...");
     }
 
