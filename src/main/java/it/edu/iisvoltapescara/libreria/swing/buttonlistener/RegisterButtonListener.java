@@ -1,10 +1,9 @@
 package it.edu.iisvoltapescara.libreria.swing.buttonlistener;
 
+import it.edu.iisvoltapescara.libreria.Main;
 import it.edu.iisvoltapescara.libreria.book.Book;
 import it.edu.iisvoltapescara.libreria.swing.FrameApplication;
 import it.edu.iisvoltapescara.libreria.swing.util.DialogHelper;
-import it.edu.iisvoltapescara.libreria.swing.util.StringUtil;
-import lombok.RequiredArgsConstructor;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,9 +13,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-@RequiredArgsConstructor
 public class RegisterButtonListener implements ActionListener {
     private final FrameApplication finestra;
+
+    public RegisterButtonListener(FrameApplication finestra) {
+        this.finestra = finestra;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -27,20 +29,20 @@ public class RegisterButtonListener implements ActionListener {
 
 
         if (finestra.areFieldsInvalid()) {
-            finestra.setFieldsColorIfEmpty(Color.RED);
+            finestra.changeFieldsColorIfEmpty(Color.RED);
             DialogHelper.showInfoDialog("Errore", "I campi non possono essere vuoti!");
-            finestra.setFieldsColor(Color.WHITE);
+            finestra.changeFieldsColor(Color.WHITE);
             return;
         }
 
-        if (!StringUtil.isStringDouble(priceString)) {
+        if (!Main.checkStringCanBeDouble(priceString)) {
             finestra.getPriceField().setBackground(Color.RED);
             DialogHelper.showErrorDialog("Errore", "Il campo prezzo deve essere numerico!");
             finestra.getPriceField().setBackground(Color.WHITE);
             return;
         }
 
-        if (!StringUtil.isStringInteger(pagesString)) {
+        if (!Main.checkStringCanBeInteger(pagesString)) {
             finestra.getPageField().setBackground(Color.RED);
             DialogHelper.showErrorDialog("Errore", "Il campo pagine deve essere numerico!");
             finestra.getPageField().setBackground(Color.WHITE);
@@ -69,8 +71,7 @@ public class RegisterButtonListener implements ActionListener {
         finestra.getBookManager().add(book);
 
         DialogHelper.showInfoDialog("Registrato", "Libro registrato con successo!");
-        finestra.resetFileChooser();
-        finestra.clearFields();
+        finestra.resetAllFields();
         finestra.loadBooksInTextArea();
     }
 }

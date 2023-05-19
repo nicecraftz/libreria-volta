@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 public class RoundedButton extends JButton {
-    private static final Color DEFAULT_COLOR = Color.LIGHT_GRAY;
     private final Color backgroundColor;
 
     public RoundedButton(String text, Color backgroundColor) {
@@ -14,10 +13,6 @@ public class RoundedButton extends JButton {
         this.backgroundColor = backgroundColor;
         setContentAreaFilled(false);
         setBorderPainted(false);
-    }
-
-    public RoundedButton(String text) {
-        this(text, DEFAULT_COLOR);
     }
 
     @Override
@@ -31,9 +26,5 @@ public class RoundedButton extends JButton {
 
         super.paintComponent(g2);
         g2.dispose();
-    }
-
-    public Color getBackgroundColor() {
-        return backgroundColor;
     }
 }

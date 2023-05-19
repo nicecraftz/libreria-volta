@@ -4,15 +4,17 @@ import it.edu.iisvoltapescara.libreria.book.BookManager;
 import it.edu.iisvoltapescara.libreria.swing.FrameApplication;
 import it.edu.iisvoltapescara.libreria.swing.util.DialogHelper;
 import it.edu.iisvoltapescara.libreria.book.Book;
-import lombok.RequiredArgsConstructor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 public class RemoveActionListener implements ActionListener {
     private final FrameApplication frameApplication;
+
+    public RemoveActionListener(FrameApplication frameApplication) {
+        this.frameApplication = frameApplication;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

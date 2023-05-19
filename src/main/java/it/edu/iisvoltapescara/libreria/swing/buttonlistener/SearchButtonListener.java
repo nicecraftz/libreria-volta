@@ -4,16 +4,18 @@ import it.edu.iisvoltapescara.libreria.book.Book;
 import it.edu.iisvoltapescara.libreria.book.BookManager;
 import it.edu.iisvoltapescara.libreria.swing.FrameApplication;
 import it.edu.iisvoltapescara.libreria.swing.util.DialogHelper;
-import lombok.RequiredArgsConstructor;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 public class SearchButtonListener implements ActionListener {
     private final FrameApplication frameApplication;
+
+    public SearchButtonListener(FrameApplication frameApplication) {
+        this.frameApplication = frameApplication;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
